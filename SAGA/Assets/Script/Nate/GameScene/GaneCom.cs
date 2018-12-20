@@ -54,7 +54,6 @@ public class GaneCom : MonoBehaviour
                     reenNum++;
                     NoteCou--;
                 }
-
                 if (NoteCou <= 0)
                 {
                     cha = false;
@@ -63,9 +62,9 @@ public class GaneCom : MonoBehaviour
             }
         }
     }
+    //読み込んだcsvの情報からノートを生成
     void NoteCle()
     {
-
         foreach (int i in lineNum)
         {
             float pos = reen.transform.position.x + (0.5f * count_x);
@@ -93,9 +92,11 @@ public class GaneCom : MonoBehaviour
         }
         cha = true;
     }
+    //csv読み込み
     void LodeCSV()
     {
         lineNum = new int[num];
+        //FilePassが譜面ファイル名
         TextAsset csv = Resources.Load("CSV/" + FilePass) as TextAsset;
         StringReader reader = new StringReader(csv.text);
 
@@ -123,49 +124,10 @@ public class GaneCom : MonoBehaviour
 
         }
     }
+    //スタートボタン、後で消す
     public void start()
     {
         StartTriger = true;
-    }
-    public void Tap(out int tap)
-    {
-        tap = 10;
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            tap = 0;
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            tap = 1;
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            tap = 2;
-        }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            tap = 3;
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            tap = 4;
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            tap = 5;
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            tap = 6;
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            tap = 7;
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            tap = 8;
-        }
     }
 }
 
