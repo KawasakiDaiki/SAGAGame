@@ -19,8 +19,9 @@ public class GaneCom : MonoBehaviour
     int[] lineNum;
     float[] X,Y,pushtiming;//レーン：列：タッチ時間
     GameObject[] notes;
-    
-    
+
+    Touch touch;
+    public Text text;
 
     // Use this for initialization
     void Start()
@@ -58,6 +59,16 @@ public class GaneCom : MonoBehaviour
                 {
                     cha = false;
                     delta = 0;
+                }
+                if (Input.GetMouseButtonDown(0))
+                {
+                    float a = Input.mousePosition.x;
+                    float b = Input.mousePosition.y;
+                    text.text = a.ToString() + "\n" + b.ToString();
+                    if (true)
+                    {
+
+                    }
                 }
             }
         }
