@@ -65,10 +65,7 @@ public class GaneCom : MonoBehaviour
                     float a = Input.mousePosition.x;
                     float b = Input.mousePosition.y;
                     text.text = a.ToString() + "\n" + b.ToString();
-                    if (true)
-                    {
-
-                    }
+                    
                 }
             }
         }
