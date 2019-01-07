@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Tap : MonoBehaviour {
     Touch touch;
-    public Text text;
+    public Text[] text;
     // Use this for initialization
     void Start () {
 		
@@ -13,9 +13,13 @@ public class Tap : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float a = Input.mousePosition.x;
-        float b = Input.mousePosition.y;
-        text.text = a.ToString()+"\n"+ b.ToString();
-
+        if (0 < Input.touchCount)
+        {
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                Touch t = Input.GetTouch(i);
+                text[i].text = t.position.x.ToString() + "_:_" + t.position.y.ToString();
+            }
+        }
     }
 }

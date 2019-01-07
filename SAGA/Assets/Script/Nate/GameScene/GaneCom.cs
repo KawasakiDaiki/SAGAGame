@@ -13,7 +13,7 @@ public class GaneCom : MonoBehaviour
     int tapNum;
     bool cha = false;
     static bool StartTriger=false;
-    float timing,delta;
+    float timing,delta,puhsDel;
     public string FilePass;
     public GameObject note, reen;
     int[] lineNum;
@@ -22,6 +22,7 @@ public class GaneCom : MonoBehaviour
 
     Touch touch;
     public Text text;
+    int a;
 
     // Use this for initialization
     void Start()
@@ -34,8 +35,6 @@ public class GaneCom : MonoBehaviour
         count_x = 0;
         LodeCSV();
         NoteCle();
-        
-        //Debug.Log(X[0] + "_" + Y[0]);
     }
 
     // Update is called once per frame
@@ -44,8 +43,8 @@ public class GaneCom : MonoBehaviour
         //start準備(ノーツの生成)
         if (cha)
         {
-            //スタート
-            if (StartTriger)
+            //開始エフェクト後にスタート
+            if (StartTriger)//開始エフェクト後にon
             {
                 Debug.Log(delta);
                 delta += Time.deltaTime;
@@ -60,12 +59,28 @@ public class GaneCom : MonoBehaviour
                     cha = false;
                     delta = 0;
                 }
-                if (Input.GetMouseButtonDown(0))
+                if (0 < Input.touchCount)
                 {
-                    float a = Input.mousePosition.x;
-                    float b = Input.mousePosition.y;
-                    text.text = a.ToString() + "\n" + b.ToString();
-                    
+                    for (int i = 0; i < Input.touchCount; i++)
+                    {
+                        Touch t = Input.GetTouch(i);
+                        puhsDel = delta;
+                        int count_i = 0;
+                        while (count_i < pushtiming.Length)
+                        {
+                            if (puhsDel >= pushtiming[count_i] - 0.1f && puhsDel <= pushtiming[count_i] + 0.1f)
+                            {
+                                
+                                a++;
+                                text.text = a.ToString();
+                                /*if (t.position<)*/
+                                notes[count_i].SetActive(false);
+                                //効果音
+                            }
+                            count_i++;
+                        }
+                    }
+
                 }
             }
         }

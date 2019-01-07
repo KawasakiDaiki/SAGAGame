@@ -8,3 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/SAGA.unity
     guid: ffd02501440a4c84fba21ab8bcedf63d
+  - enabled: 0
+    path: Assets/Scene/Configuration.unity
+    guid: d7d4b05e2c9ccf54983470146f47e411
