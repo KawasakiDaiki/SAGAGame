@@ -4,6 +4,8 @@ using System;
 
 public class NotesCle : MonoBehaviour {
     public GameObject note;
+    public AudioClip audio;
+    AudioSource audiosourse;
     CSVWrite CSVW;
     [SerializeField] GameObject DefReen;
     Vector3 Vec;
@@ -13,6 +15,7 @@ public class NotesCle : MonoBehaviour {
     int count, WriteCount, timeNum;
     char[] WriteReen=new char[7];
     bool WriteTrigger = false;
+    bool StartRead=false;
     // Use this for initialization
     void Start() {
         count = 0;
@@ -20,6 +23,7 @@ public class NotesCle : MonoBehaviour {
         Vec = new Vector3(DefReen.transform.position.x, 0, 0);
         CSVW = GetComponent<CSVWrite>();
         _startTime = Time.time;
+        audiosourse = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -27,6 +31,54 @@ public class NotesCle : MonoBehaviour {
         BGet();
     }
     void BGet()
+    {
+        if(StartRead)
+        GetBottenKey();
+}
+    public void WriteC(int num)
+    {
+        Array.Resize(ref time, count + 1);
+        Array.Resize(ref reenNum, count + 1);
+        time[count] = GetTiming();
+        reenNum[count] = num;
+        //CSVW.WriteCSV(GetTiming().ToString() + "," + num.ToString());
+        Instantiate(note, new Vector3(DefReen.transform.position.x + 0.5f * num, 0, 0), Quaternion.identity);
+        count++;
+    }
+    public float GetTiming()
+    {
+        return Time.time - _startTime;
+    }
+    void WriteCSV()
+    {
+        for(int t=timeNum;t<time.Length;t++,timeNum++)
+        {
+            if (0.5f * WriteCount >= time[t] && 0.5f*WriteCount-1<time[t])
+            {
+                WriteReen[reenNum[t]] = '1';
+            }
+            if (0.5f * WriteCount < time[t])
+            {
+                break;
+            }   
+        }
+        WriteCount++;
+        CSVW.WriteCSV(WriteReen[0]+","+WriteReen[1]+"," + WriteReen[2] + "," + WriteReen[3] + "," + WriteReen[4] + "," + WriteReen[5] + "," + WriteReen[6]);
+        for (int i = 0; i < 7; i++)
+        {
+            WriteReen[i] = ' ';
+        }
+        if (timeNum >= count)
+        {
+            StartRead = false;
+        }
+    }
+    public void start()
+    {
+        StartRead = true;
+        audiosourse.PlayOneShot(audio);
+    }
+    void GetBottenKey()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -63,40 +115,6 @@ public class NotesCle : MonoBehaviour {
         if (WriteTrigger)
         {
             WriteCSV();
-        }
-}
-    public void WriteC(int num)
-    {
-        Array.Resize(ref time, count + 1);
-        Array.Resize(ref reenNum, count + 1);
-        time[count] = GetTiming();
-        reenNum[count] = num;
-        //CSVW.WriteCSV(GetTiming().ToString() + "," + num.ToString());
-        Instantiate(note, new Vector3(DefReen.transform.position.x + 0.5f * num, 0, 0), Quaternion.identity);
-        count++;
-    }
-    public float GetTiming()
-    {
-        return Time.time - _startTime;
-    }
-    void WriteCSV()
-    {
-        for(int t=0;t<time.Length;t++,timeNum++)
-        {
-            if (0.5f * WriteCount >= time[t] && 0.5f*WriteCount-1<time[t])
-            {
-                WriteReen[reenNum[t]] = '1';
-            }
-            if (0.5f * WriteCount < t)
-            {
-                break;
-            }   
-        }
-        WriteCount++;
-        CSVW.WriteCSV(WriteReen[0]+","+WriteReen[1]+"," + WriteReen[2] + "," + WriteReen[3] + "," + WriteReen[4] + "," + WriteReen[5] + "," + WriteReen[6]);
-        for (int i = 0; i < 7; i++)
-        {
-            WriteReen[i] = ' ';
         }
     }
 }
