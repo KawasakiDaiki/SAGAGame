@@ -11,7 +11,7 @@ public class GaneCom : MonoBehaviour
     int num = 1, reenNum = 0, BPM = 1;
     int count_x = 0,count_y,reenCount,NoteCou;
     int tapNum;
-    bool cha = false;
+    bool cha = false,touchOn=true;
     static bool StartTriger=false;
     float timing,delta,puhsDel;
     public string FilePass;
@@ -43,10 +43,12 @@ public class GaneCom : MonoBehaviour
         //start準備(ノーツの生成)
         if (cha)
         {
+            //StartTriger = true;
             //開始エフェクト後にスタート
             if (StartTriger)//開始エフェクト後にon
             {
-                Debug.Log(delta);
+                touchOn = true;
+                //Debug.Log(delta);
                 delta += Time.deltaTime;
                 while (delta >= pushtiming[reenNum]+1 && NoteCou > 0)
                 {
@@ -59,28 +61,32 @@ public class GaneCom : MonoBehaviour
                     cha = false;
                     delta = 0;
                 }
-                if (0 < Input.touchCount)
+                if (touchOn)
                 {
-                    for (int i = 0; i < Input.touchCount; i++)
+                    if (0 < Input.touchCount)
                     {
-                        Touch t = Input.GetTouch(i);
-                        puhsDel = delta;
-                        int count_i = 0;
-                        while (count_i < pushtiming.Length)
+                        
+                        for (int i = 0; i < Input.touchCount; i++)
                         {
-                            if (puhsDel >= pushtiming[count_i] - 0.1f && puhsDel <= pushtiming[count_i] + 0.1f)
+                            Touch t = Input.GetTouch(i);
+                            puhsDel = delta;
+                            int count_i = 0;
+                            while (count_i < pushtiming.Length)
                             {
-                                
-                                a++;
-                                text.text = a.ToString();
-                                /*if (t.position<)*/
-                                notes[count_i].SetActive(false);
-                                //効果音
-                            }
-                            count_i++;
-                        }
-                    }
+                                if (puhsDel >= pushtiming[count_i] - 0.1f && puhsDel <= pushtiming[count_i] + 0.1f)
+                                {
 
+                                    a++;
+                                    text.text = puhsDel.ToString();
+                                    /*if (t.position<)*/
+                                    notes[count_i].SetActive(false);
+                                    //効果音
+                                }
+                                count_i++;
+                            }
+                        }
+                        touchOn = false;
+                    }
                 }
             }
         }
@@ -94,7 +100,7 @@ public class GaneCom : MonoBehaviour
             
             if (i == 1)
             {
-                Debug.Log("a");
+                //Debug.Log("a");
                 X[reenCount] = count_x;
                 Y[reenCount] = count_y;
                 pushtiming[reenCount] = count_y * 0.5f * BPM;
@@ -123,6 +129,7 @@ public class GaneCom : MonoBehaviour
         TextAsset csv = Resources.Load("CSV/" + FilePass) as TextAsset;
         StringReader reader = new StringReader(csv.text);
 
+        Debug.Log(csv);
 
         int i = 0;
         while (reader.Peek() > -1)

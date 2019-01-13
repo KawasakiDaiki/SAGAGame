@@ -1439,7 +1439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c106c3f20c61ac4ba0deacd3a2fb22e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FilePass: Humen
+  FilePass: _Syugyousou
   note: {fileID: 1705644025460314, guid: d71d5ab7d2cb4ec499964334073f415c, type: 2}
   reen: {fileID: 391264474}
   text: {fileID: 1703805307}
