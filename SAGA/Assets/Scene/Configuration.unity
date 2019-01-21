@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6103d37c5a309e84294b505b302c0d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filename: Resources/CSV/_Syugyousou
+  filename: Resources/CSV/kyokumei
 --- !u!4 &80144704
 Transform:
   m_ObjectHideFlags: 0
