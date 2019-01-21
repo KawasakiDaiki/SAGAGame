@@ -8,9 +8,9 @@ using UnityEngine.UI;
 public class GaneCom : MonoBehaviour
 {
 
-    int num = 1, reenNum = 0, BPM = 1;
+    int num = 1, reenNum, BPM = 1;
     int count_x = 0,count_y,reenCount,NoteCou;
-    int tapNum;
+    int tapNum, count_i;
     bool cha = false,touchOn=true;
     static bool StartTriger=false;
     float timing,delta,puhsDel;
@@ -32,6 +32,7 @@ public class GaneCom : MonoBehaviour
         pushtiming = new float[1];
         notes = new GameObject[1];
         num = 1;
+        reenNum = 0;
         count_x = 0;
         LodeCSV();
         NoteCle();
@@ -47,11 +48,15 @@ public class GaneCom : MonoBehaviour
             //開始エフェクト後にスタート
             if (StartTriger)//開始エフェクト後にon
             {
-                touchOn = true;
+                if (Input.touchCount == 0)
+                {
+                    touchOn = true;
+                }  
                 //Debug.Log(delta);
                 delta += Time.deltaTime;
-                while (delta >= pushtiming[reenNum]+1 && NoteCou > 0)
+                while (delta >= pushtiming[reenNum]-1 && NoteCou > 0)
                 {
+                    
                     notes[reenNum].SetActive(true);
                     reenNum++;
                     NoteCou--;
@@ -61,23 +66,43 @@ public class GaneCom : MonoBehaviour
                     cha = false;
                     delta = 0;
                 }
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    //foreach (GameObject i in notes)
+                    //{
+                    //    i.SetActive(false);
+                    //}
+                    puhsDel = delta;
+                    count_i = 0;
+                    while (count_i + 1 < pushtiming.Length)
+                    {
+                        if (puhsDel >= pushtiming[count_i] - 0.02f && puhsDel <= pushtiming[count_i] + 0.02f)
+                        {
+                            Debug.Log(notes[count_i]);
+                            Vanith(count_i);
+                            count_i++;
+                            a++;
+                            text.text = a.ToString();
+                            break;
+                        }
+                        count_i++;
+                    }
+                }
                 if (touchOn)
                 {
                     if (0 < Input.touchCount)
                     {
-                        
+
                         for (int i = 0; i < Input.touchCount; i++)
                         {
                             Touch t = Input.GetTouch(i);
                             puhsDel = delta;
-                            int count_i = 0;
+                            count_i = 0;
                             while (count_i < pushtiming.Length)
                             {
-                                if (puhsDel >= pushtiming[count_i] - 0.1f && puhsDel <= pushtiming[count_i] + 0.1f)
+                                if (puhsDel >= pushtiming[count_i] - 0.02f && puhsDel <= pushtiming[count_i] + 0.02f)
                                 {
-
                                     a++;
-                                    text.text = puhsDel.ToString();
                                     /*if (t.position<)*/
                                     notes[count_i].SetActive(false);
                                     //効果音
@@ -103,8 +128,9 @@ public class GaneCom : MonoBehaviour
                 //Debug.Log("a");
                 X[reenCount] = count_x;
                 Y[reenCount] = count_y;
-                pushtiming[reenCount] = count_y * 0.5f * BPM;
+                pushtiming[reenCount] = count_y * 0.125f * BPM;
                 notes[reenCount] = Instantiate(note, new Vector3(pos, 0, 6), Quaternion.identity);
+                notes[reenCount].name = "NOTE's" + reenCount;
                 reenCount++;
                 NoteCou++;
                 Array.Resize(ref pushtiming, reenCount + 1);
@@ -153,6 +179,10 @@ public class GaneCom : MonoBehaviour
             }
 
         }
+    }
+    public void Vanith(int count)
+    {
+        notes[count].SetActive(false);
     }
     //スタートボタン、後で消す
     public void start()
