@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: tap1_0029_bandicam-2019-01-21-14-46-30-116.43.Still001.png
+  m_Name: tapEff
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
