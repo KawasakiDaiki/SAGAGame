@@ -68,10 +68,6 @@ public class GaneCom : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.A))
                 {
-                    //foreach (GameObject i in notes)
-                    //{
-                    //    i.SetActive(false);
-                    //}
                     puhsDel = delta;
                     count_i = 0;
                     while (count_i + 1 < pushtiming.Length)
@@ -79,7 +75,25 @@ public class GaneCom : MonoBehaviour
                         if (puhsDel >= pushtiming[count_i] - 0.02f && puhsDel <= pushtiming[count_i] + 0.02f)
                         {
                             Debug.Log(notes[count_i]);
-                            Vanith(count_i);
+                            notes[count_i].SetActive(false);
+                            count_i++;
+                            a++;
+                            text.text = a.ToString();
+                            break;
+                        }
+                        else if(puhsDel >= pushtiming[count_i] - 0.06f && puhsDel <= pushtiming[count_i] + 0.06f)
+                        {
+                            Debug.Log(notes[count_i]);
+                            notes[count_i].SetActive(false);
+                            count_i++;
+                            a++;
+                            text.text = a.ToString();                 
+                            break;
+                        }
+                        else if (puhsDel >= pushtiming[count_i] - 0.1f && puhsDel <= pushtiming[count_i] + 0.1f)
+                        {
+                            Debug.Log(notes[count_i]);
+                            notes[count_i].SetActive(false);
                             count_i++;
                             a++;
                             text.text = a.ToString();
@@ -103,9 +117,27 @@ public class GaneCom : MonoBehaviour
                                 if (puhsDel >= pushtiming[count_i] - 0.02f && puhsDel <= pushtiming[count_i] + 0.02f)
                                 {
                                     a++;
+                                    count_i++;
+                                    text.text = a.ToString();
+                                    /*if (t.position<)*/
+                                    notes[count_i].SetActive(false);
+                                    break;
+                                    //効果音
+                                }
+                                else if (puhsDel >= pushtiming[count_i] - 0.06f && puhsDel <= pushtiming[count_i] + 0.06f)
+                                {
+                                    a++;
+                                    count_i++;
                                     /*if (t.position<)*/
                                     notes[count_i].SetActive(false);
                                     //効果音
+                                    break;
+                                }
+                                else if(puhsDel >= pushtiming[count_i] - 0.1f && puhsDel <= pushtiming[count_i] + 0.1f)
+                                {
+                                    a = 0;
+                                    count_i++;
+                                    break;
                                 }
                                 count_i++;
                             }
@@ -128,7 +160,7 @@ public class GaneCom : MonoBehaviour
                 //Debug.Log("a");
                 X[reenCount] = count_x;
                 Y[reenCount] = count_y;
-                pushtiming[reenCount] = count_y * 0.125f * BPM;
+                pushtiming[reenCount] = count_y * 0.0625f * BPM;
                 notes[reenCount] = Instantiate(note, new Vector3(pos, 0, 6), Quaternion.identity);
                 notes[reenCount].name = "NOTE's" + reenCount;
                 reenCount++;
@@ -180,10 +212,7 @@ public class GaneCom : MonoBehaviour
 
         }
     }
-    public void Vanith(int count)
-    {
-        notes[count].SetActive(false);
-    }
+
     //スタートボタン、後で消す
     public void start()
     {
