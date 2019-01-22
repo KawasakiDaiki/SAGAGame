@@ -41,6 +41,8 @@ public class GaneCom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float fps = 1f / Time.deltaTime;
+        Debug.LogFormat("{0}fps", fps);
         //start準備(ノーツの生成)
         if (cha)
         {
@@ -48,10 +50,6 @@ public class GaneCom : MonoBehaviour
             //開始エフェクト後にスタート
             if (StartTriger)//開始エフェクト後にon
             {
-                if (Input.touchCount == 0)
-                {
-                    touchOn = true;
-                }  
                 //Debug.Log(delta);
                 delta += Time.deltaTime;
                 while (delta >= pushtiming[reenNum]-1 && NoteCou > 0)
@@ -102,16 +100,16 @@ public class GaneCom : MonoBehaviour
                         count_i++;
                     }
                 }
-                if (touchOn)
+                if (0 < Input.touchCount)
                 {
-                    if (0 < Input.touchCount)
+                    for (int i = 0; i < Input.touchCount; i++)
                     {
-
-                        for (int i = 0; i < Input.touchCount; i++)
+                        Touch t = Input.GetTouch(i);
+                        if (t.phase == TouchPhase.Began)
                         {
-                            Touch t = Input.GetTouch(i);
                             puhsDel = delta;
                             count_i = 0;
+                            touchOn = true;
                             while (count_i < pushtiming.Length)
                             {
                                 if (puhsDel >= pushtiming[count_i] - 0.02f && puhsDel <= pushtiming[count_i] + 0.02f)
@@ -133,7 +131,7 @@ public class GaneCom : MonoBehaviour
                                     //効果音
                                     break;
                                 }
-                                else if(puhsDel >= pushtiming[count_i] - 0.1f && puhsDel <= pushtiming[count_i] + 0.1f)
+                                else if (puhsDel >= pushtiming[count_i] - 0.1f && puhsDel <= pushtiming[count_i] + 0.1f)
                                 {
                                     a = 0;
                                     count_i++;
@@ -142,8 +140,8 @@ public class GaneCom : MonoBehaviour
                                 count_i++;
                             }
                         }
-                        touchOn = false;
                     }
+                    //touchOn = false;
                 }
             }
         }

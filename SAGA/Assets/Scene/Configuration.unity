@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8569a699ece9d9144b2396eed1453fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  note: {fileID: 1705644025460314, guid: e29e37606281b1e44b650ef37a99149b, type: 2}
+  note: {fileID: 1100883522741516, guid: 051801c4e79af2c4b85581c69b43a971, type: 2}
   audio: {fileID: 8300000, guid: fdbed81e50a4f0c499e3f5cabf0b865f, type: 3}
   DefReen: {fileID: 1525711957}
   But: {fileID: 1723626637}
