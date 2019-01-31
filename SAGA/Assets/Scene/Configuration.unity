@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6103d37c5a309e84294b505b302c0d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filename: Resources/CSV/kyokumei
+  filename: Resources/CSV/Oceanus
 --- !u!4 &80144704
 Transform:
   m_ObjectHideFlags: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   note: {fileID: 1705644025460314, guid: e29e37606281b1e44b650ef37a99149b, type: 2}
-  audio: {fileID: 8300000, guid: fdbed81e50a4f0c499e3f5cabf0b865f, type: 3}
+  audio: {fileID: 8300000, guid: bab31523ecb473845a9463f7ede93bd5, type: 3}
   DefReen: {fileID: 1525711957}
   But: {fileID: 1723626637}
   text: {fileID: 289520253}
@@ -255,7 +255,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fdbed81e50a4f0c499e3f5cabf0b865f, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -313,7 +313,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
