@@ -64,7 +64,11 @@ public class NotesCle : MonoBehaviour {
         text.text = "書き出し中...";
         for(int t=timeNum;t<time.Length;t++,timeNum++)
         {
+
+            if (0.0625f * WriteCount >= time[t] && 0.0625f*WriteCount-1<time[t])
+
             if (0.0625 * WriteCount >= time[t] && 0.0625f*WriteCount-1<time[t])
+>>>>>>> dc68587b32e2e6acd38bd792188c62073dbd024b
             {
                 WriteReen[reenNum[t]] = '1';
             }
