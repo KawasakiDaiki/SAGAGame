@@ -3,23 +3,25 @@ using System.Collections;
 using System;
 using UnityEngine.UI;
 
-public class NotesCle : MonoBehaviour {
+public class NotesCle : MonoBehaviour
+{
     public GameObject note;
     public AudioClip audio;
     AudioSource audiosourse;
     CSVWrite CSVW;
     [SerializeField] GameObject DefReen;
     float delta, _startTime;
-    float[] time=new float[1];
-    int[] reenNum=new int[1];
+    float[] time = new float[1];
+    int[] reenNum = new int[1];
     int count, WriteCount, timeNum;
-    char[] WriteReen=new char[7];
+    char[] WriteReen = new char[7];
     bool WriteTrigger = false;
-    bool StartRead=false;
+    bool StartRead = false;
     public Button But;
-    [SerializeField]Text text;
+    [SerializeField] Text text;
     // Use this for initialization
-    void Start() {
+    void Start()
+    {
         count = 0;
         WriteCount = 1;
         CSVW = GetComponent<CSVWrite>();
@@ -32,13 +34,14 @@ public class NotesCle : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         BGet();
     }
     void BGet()
     {
-        if(StartRead)
-        GetBottenKey();
+        if (StartRead)
+            GetBottenKey();
 
         if (WriteTrigger)
         {
@@ -62,23 +65,19 @@ public class NotesCle : MonoBehaviour {
     void WriteCSV()
     {
         text.text = "書き出し中...";
-        for(int t=timeNum;t<time.Length;t++,timeNum++)
+        for (int t = timeNum; t < time.Length; t++, timeNum++)
         {
-
-            if (0.0625f * WriteCount >= time[t] && 0.0625f*WriteCount-1<time[t])
-
-            if (0.0625 * WriteCount >= time[t] && 0.0625f*WriteCount-1<time[t])
-
+            if (0.0625 * WriteCount >= time[t] && 0.0625f * WriteCount - 1 < time[t])
             {
                 WriteReen[reenNum[t]] = '1';
             }
             if (0.0625f * WriteCount < time[t])
             {
                 break;
-            }   
+            }
         }
         WriteCount++;
-        CSVW.WriteCSV(WriteReen[0]+","+WriteReen[1]+"," + WriteReen[2] + "," + WriteReen[3] + "," + WriteReen[4] + "," + WriteReen[5] + "," + WriteReen[6]);
+        CSVW.WriteCSV(WriteReen[0] + "," + WriteReen[1] + "," + WriteReen[2] + "," + WriteReen[3] + "," + WriteReen[4] + "," + WriteReen[5] + "," + WriteReen[6]);
         for (int i = 0; i < 7; i++)
         {
             WriteReen[i] = ' ';

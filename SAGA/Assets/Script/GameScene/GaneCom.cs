@@ -9,14 +9,14 @@ using UnityEngine.SceneManagement;
 public class GaneCom : MonoBehaviour
 {
     int p, g, m;
-    int num , BPM = 1, cou = 1;
-    int a, reenNum,TapReen;
+    int num, BPM = 1, cou = 1;
+    int a, reenNum, TapReen;
     int count_x = 0, count_y, reenCount, NoteCou;
     int tapNum;
     public int count_i;
     bool cha = false, notefalse = false;
     static bool StartTriger = false;
-    float timing, delta, pushDel,ActiveTime=0.3f;
+    float timing, delta, pushDel, ActiveTime = 0.3f;
     public string FilePass;
     public GameObject note, reen, button;
     public AudioClip audio;
@@ -29,11 +29,11 @@ public class GaneCom : MonoBehaviour
     KeyCode key;
     RaycastHit hit;
     Color mat;
-    bool test_a=false, test_b=false;
-
+    bool test_a = false, test_b = false;
+    Animator animator;
 
     //ノーツが格納されている配列
-    [SerializeField]S_NATE_STATUS[] NateArray;
+    [SerializeField] S_NATE_STATUS[] NateArray;
     //判定用のリスト
     List<S_NATE_STATUS> ActiveNateList = new List<S_NATE_STATUS>();
     struct S_NATE_STATUS
@@ -42,16 +42,12 @@ public class GaneCom : MonoBehaviour
         public float time;
         public int lineNum;
     }
-    
+
 
     // Use this for initialization
     void Start()
     {
-        //X = new float[1];
-        //Y = new float[1];
         lineNum = new int[1];
-        //pushtiming = new float[1];
-        //notes = new GameObject[1];
         audiosourse = GetComponent<AudioSource>();
         cou = 1;
         reenNum = 0;
@@ -67,7 +63,8 @@ public class GaneCom : MonoBehaviour
     {
         //float fps = 1f / Time.deltaTime;
         //Debug.LogFormat("{0}fps", fps);
-        //start準備(ノーツの生成)
+        
+        //プレイ終了
         if (!cha)
         {
             delta += Time.deltaTime;
@@ -76,49 +73,38 @@ public class GaneCom : MonoBehaviour
                 SceneManager.LoadScene("result");
             }
         }
+        //start準備(ノーツの生成)終了でtrue
         if (cha)
         {
-            //foreach(var a in NateArray)
-            //{
-                //Debug.Log("NateArray.Length:" + NateArray.Length);
-            //}
-            //StartTriger = true;
             //開始エフェクト後にスタート
             if (StartTriger)//開始エフェクト後にon
             {
-                //Debug.Log("来た");
                 notefalse = false;
-                //Debug.Log(delta);
                 delta += Time.deltaTime;
+
                 //生成
-                while (audiosourse.time >= NateArray[reenNum].time - 1.0f*2 && reenNum < NoteCou)
+                while (audiosourse.time >= NateArray[reenNum].time - 1.0f * 2 && reenNum < NoteCou)
                 {
-                    //Debug.Log("reenNum:" + reenNum);
                     NateArray[reenNum].obj.SetActive(true);
                     reenNum++;
-                    //NoteCou--;
-
                     test_a = true;
                 }
+
                 //判定許容時間内
-                //Debug.Log("cou:"+cou);
-                while (audiosourse.time + 0.3f >= NateArray[cou].time&& NateArray.Length-1 > cou && test_a==true)
+                while (audiosourse.time + 0.3f >= NateArray[cou].time && NateArray.Length - 1 > cou && test_a == true)
                 {
                     ActiveNateList.Add(NateArray[cou]);
                     cou++;
-                    //Debug.Log("動いている？");
                     test_b = true;
                 }
+
                 //判定許容時間外
                 if (test_b == true && ActiveNateList[0].time <= audiosourse.time - 0.3f)
                 {
                     ActiveNateList.RemoveAt(0);
-                    //Debug.Log("やっほ");
-                    if(ActiveNateList.Count==0)
-                    test_b = false;
+                    if (ActiveNateList.Count == 0)
+                        test_b = false;
                 }
-                
-                
 
                 GetBottenKey();
 
@@ -132,11 +118,13 @@ public class GaneCom : MonoBehaviour
                         {
                             if (t.phase == TouchPhase.Began)
                             {
+                                //タップ音再生
                                 Ray ray = Camera.main.ScreenPointToRay(t.position);
-                                if(Physics.Raycast(ray,out hit))
+                                if (Physics.Raycast(ray, out hit))
                                 {
+                                    //hit.collider.gameObject.GetComponent<Animator>().SetBool("tap",true);
                                     text[1].text = hit.collider.gameObject.name;
-                                    TapReen = -48+hit.collider.gameObject.name[5];
+                                    TapReen = -48 + hit.collider.gameObject.name[5];
                                     PushKey(TapReen);
                                 }
                             }
@@ -145,7 +133,7 @@ public class GaneCom : MonoBehaviour
                 }
 
                 //終了処理
-                if (count_i >= NateArray.Length-1)
+                if (count_i >= NateArray.Length - 1)
                 {
                     text[0].text = "ok";
                     cha = false;
@@ -155,20 +143,24 @@ public class GaneCom : MonoBehaviour
             }
         }
     }
+    //タップのレーンの色
     public void Click_Collar(int ReenNum)
     {
-        reencolor[ReenNum].GetComponent<Renderer>().material.color=Color.yellow;
+        //reencolor[ReenNum].GetComponent<Animator>().SetBool("tap", true);
+        reencolor[ReenNum].GetComponent<Renderer>().material.color = Color.yellow;
     }
     public void NoClick_Collar(int ReenNum)
     {
         reencolor[ReenNum].GetComponent<Renderer>().material.color = mat;
     }
-
+  
+    //タップ判定
     void PushKey(int num)
     {
         //text[0].text = TapReen.ToString() + "_" + NateArray[count_i].lineNum;
-        
-        foreach(var a in ActiveNateList)
+        Click_Collar(num);
+
+        foreach (var a in ActiveNateList)
         {
             if (a.lineNum == num)
             {
@@ -177,11 +169,11 @@ public class GaneCom : MonoBehaviour
                 {
                     notefalse = true;
                 }
-                else if (deltaTime >= -0.04f && deltaTime <= 0.04f)
+                else if (deltaTime >= -0.03f && deltaTime <= 0.03f)
                 {
                     notefalse = true;
                 }
-                else if (deltaTime >= -0.07f && deltaTime <= 0.07f)
+                else if (deltaTime >= -0.055f && deltaTime <= 0.055f)
                 {
                     notefalse = true;
                 }
@@ -196,11 +188,7 @@ public class GaneCom : MonoBehaviour
             }
         }
     }
-
-            
-
-
-
+  
     //読み込んだcsvの情報からノートを生成
     void NoteCle()
     {
@@ -240,16 +228,17 @@ public class GaneCom : MonoBehaviour
             }
         }
         cha = true;
-        NateArray = new S_NATE_STATUS[list.Count+1];
-        for(int i=0;i<NateArray.Length-1;i++)
+        NateArray = new S_NATE_STATUS[list.Count + 1];
+        for (int i = 0; i < NateArray.Length - 1; i++)
         {
             NateArray[i] = list[i];
         }
     }
+  
     //csv読み込み
     void LodeCSV()
     {
-        
+
         //FilePassが譜面ファイル名
         TextAsset csv = Resources.Load("CSV/" + FilePass) as TextAsset;
         StringReader reader = new StringReader(csv.text);
@@ -261,7 +250,7 @@ public class GaneCom : MonoBehaviour
         {
             string line = reader.ReadLine();
             string[] values = line.Split(',');
-            int h=0;
+            int h = 0;
             while (values.Length != h)
             {
                 //Debug.Log("values[h]"+values[h]);
@@ -278,14 +267,13 @@ public class GaneCom : MonoBehaviour
             }
         }
     }
-
+  
     //エディタでの入力
     void GetBottenKey()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
             PushKey(0);
-            Click_Collar(0);
         }
         if (Input.GetKeyUp(KeyCode.A))
         {
@@ -295,7 +283,6 @@ public class GaneCom : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             PushKey(1);
-            Click_Collar(1);
         }
         if (Input.GetKeyUp(KeyCode.S))
         {
@@ -305,7 +292,6 @@ public class GaneCom : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D))
         {
             PushKey(2);
-            Click_Collar(2);
         }
         if (Input.GetKeyUp(KeyCode.D))
         {
@@ -315,7 +301,6 @@ public class GaneCom : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             PushKey(3);
-            Click_Collar(3);
         }
         if (Input.GetKeyUp(KeyCode.F))
         {
@@ -325,7 +310,6 @@ public class GaneCom : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
         {
             PushKey(4);
-            Click_Collar(4);
         }
         if (Input.GetKeyUp(KeyCode.J))
         {
@@ -335,7 +319,6 @@ public class GaneCom : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             PushKey(5);
-            Click_Collar(5);
         }
         if (Input.GetKeyUp(KeyCode.K))
         {
@@ -345,7 +328,6 @@ public class GaneCom : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             PushKey(6);
-            Click_Collar(6);
         }
         if (Input.GetKeyUp(KeyCode.L))
         {
@@ -353,8 +335,8 @@ public class GaneCom : MonoBehaviour
         }
     }
 
-        //スタートボタン、後で消す
-        public void start()
+    //スタートボタン、後で消す
+    public void start()
     {
         text[0].text = "STRAT";
         StartTriger = true;
