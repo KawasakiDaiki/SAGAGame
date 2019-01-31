@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6103d37c5a309e84294b505b302c0d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filename: Resources/CSV/Oceanus
+  filename: Resources/CSV/_Syugyousou
 --- !u!4 &80144704
 Transform:
   m_ObjectHideFlags: 0
@@ -241,8 +241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8569a699ece9d9144b2396eed1453fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  note: {fileID: 1705644025460314, guid: e29e37606281b1e44b650ef37a99149b, type: 2}
-  audio: {fileID: 8300000, guid: bab31523ecb473845a9463f7ede93bd5, type: 3}
+  note: {fileID: 1100883522741516, guid: 051801c4e79af2c4b85581c69b43a971, type: 2}
+  audio: {fileID: 8300000, guid: 38f853f3226cc4d43b20617f935d93a6, type: 3}
   DefReen: {fileID: 1525711957}
   But: {fileID: 1723626637}
   text: {fileID: 289520253}
@@ -255,7 +255,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fdbed81e50a4f0c499e3f5cabf0b865f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -313,7 +313,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -371,6 +371,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
+  - {fileID: 2100000, guid: 3c366bf6ac5dffe47bd39f3e6f5409c4, type: 2}
   - {fileID: 2100000, guid: eb60c2bc85720c441813972ba77c997c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -667,6 +668,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
+  - {fileID: 2100000, guid: 3c366bf6ac5dffe47bd39f3e6f5409c4, type: 2}
   - {fileID: 2100000, guid: eb60c2bc85720c441813972ba77c997c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -753,6 +755,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
+  - {fileID: 2100000, guid: 3c366bf6ac5dffe47bd39f3e6f5409c4, type: 2}
   - {fileID: 2100000, guid: eb60c2bc85720c441813972ba77c997c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -1116,6 +1119,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
+  - {fileID: 2100000, guid: 3c366bf6ac5dffe47bd39f3e6f5409c4, type: 2}
   - {fileID: 2100000, guid: eb60c2bc85720c441813972ba77c997c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -1202,6 +1206,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
+  - {fileID: 2100000, guid: 3c366bf6ac5dffe47bd39f3e6f5409c4, type: 2}
   - {fileID: 2100000, guid: eb60c2bc85720c441813972ba77c997c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -1288,6 +1293,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
+  - {fileID: 2100000, guid: 3c366bf6ac5dffe47bd39f3e6f5409c4, type: 2}
   - {fileID: 2100000, guid: eb60c2bc85720c441813972ba77c997c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -1496,6 +1502,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
+  - {fileID: 2100000, guid: 3c366bf6ac5dffe47bd39f3e6f5409c4, type: 2}
   - {fileID: 2100000, guid: eb60c2bc85720c441813972ba77c997c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
