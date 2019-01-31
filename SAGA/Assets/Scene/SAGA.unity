@@ -279,6 +279,7 @@ GameObject:
   - component: {fileID: 216706655}
   - component: {fileID: 216706658}
   - component: {fileID: 216706659}
+  - component: {fileID: 216706660}
   m_Layer: 0
   m_Name: Plane2
   m_TagString: Reen
@@ -381,6 +382,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &216706660
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 216706653}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 47cedcc35015f7c428f496fb2de8bb23, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &233906019
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,6 +412,7 @@ GameObject:
   - component: {fileID: 233906021}
   - component: {fileID: 233906024}
   - component: {fileID: 233906025}
+  - component: {fileID: 233906026}
   m_Layer: 0
   m_Name: Plane4
   m_TagString: Reen
@@ -496,6 +515,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &233906026
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 233906019}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 47cedcc35015f7c428f496fb2de8bb23, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &308099061
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +545,7 @@ GameObject:
   - component: {fileID: 308099063}
   - component: {fileID: 308099066}
   - component: {fileID: 308099067}
+  - component: {fileID: 308099068}
   m_Layer: 0
   m_Name: Plane1
   m_TagString: Reen
@@ -611,6 +648,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &308099068
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 308099061}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 47cedcc35015f7c428f496fb2de8bb23, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &371265796
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,6 +678,7 @@ GameObject:
   - component: {fileID: 371265798}
   - component: {fileID: 371265801}
   - component: {fileID: 371265802}
+  - component: {fileID: 371265803}
   m_Layer: 0
   m_Name: Plane5
   m_TagString: Reen
@@ -726,6 +781,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &371265803
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 371265796}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 47cedcc35015f7c428f496fb2de8bb23, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &391264474
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,6 +811,7 @@ GameObject:
   - component: {fileID: 391264476}
   - component: {fileID: 391264479}
   - component: {fileID: 391264480}
+  - component: {fileID: 391264481}
   m_Layer: 0
   m_Name: Plane0
   m_TagString: Reen
@@ -841,6 +914,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &391264481
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 391264474}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6ce8d0f19ddc55f4bae6aef1aed0bcc4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &407489362
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,6 +1388,7 @@ GameObject:
   - component: {fileID: 1263669211}
   - component: {fileID: 1263669214}
   - component: {fileID: 1263669215}
+  - component: {fileID: 1263669216}
   m_Layer: 0
   m_Name: Plane3
   m_TagString: Reen
@@ -1400,6 +1491,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &1263669216
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1263669209}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 47cedcc35015f7c428f496fb2de8bb23, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1392846074
 GameObject:
   m_ObjectHideFlags: 0
@@ -1837,6 +1945,7 @@ GameObject:
   - component: {fileID: 1929809707}
   - component: {fileID: 1929809710}
   - component: {fileID: 1929809711}
+  - component: {fileID: 1929809712}
   m_Layer: 0
   m_Name: Plane6
   m_TagString: Reen
@@ -1939,3 +2048,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &1929809712
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1929809705}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 47cedcc35015f7c428f496fb2de8bb23, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
