@@ -9,13 +9,18 @@ public class title : MonoBehaviour {
 	void Start () {
 		
 	}
+
+    public void ButtonDown()
+    {
+        SceneManager.LoadScene("test Scene");
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            SceneManager.LoadScene("test Scene");
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    SceneManager.LoadScene("test Scene");
+        //}
 	}
 }
