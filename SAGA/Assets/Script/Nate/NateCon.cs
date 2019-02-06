@@ -20,10 +20,12 @@ public class NateCon : MonoBehaviour {
     void Update()
     {
         delta += Time.deltaTime;
-        transform.localPosition = new Vector3(notePos.x, notePos.y, (notePos.z - len/2 * delta));
+        transform.localPosition = new Vector3(notePos.x, notePos.y, (notePos.z - len * delta));
         if (transform.position.z < -5)
         {
             man.GetComponent<GaneCom>().count_i++;
+            man.GetComponent<GaneCom>().conbo = 0;
+            GaneCom.m++;
             gameObject.SetActive(false);
         }
     }

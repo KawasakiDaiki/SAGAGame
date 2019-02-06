@@ -8,18 +8,19 @@ using UnityEngine.SceneManagement;
 
 public class GaneCom : MonoBehaviour
 {
-    int p, g, m;
+    public static int p, g, m;
     int num, BPM = 1, cou = 1;
-    int a, reenNum, TapReen;
+    int reenNum, TapReen;
+    public int conbo;
     int count_x = 0, count_y, reenCount, NoteCou;
     int tapNum;
     public int count_i;
     bool cha = false, notefalse = false;
     static bool StartTriger = false;
-    float timing, delta, pushDel, ActiveTime = 0.3f;
-    public string FilePass;
+    float delta , ActiveTime = 0.3f;
+    string FilePass;
     public GameObject note, reen, button;
-    public AudioClip audio;
+    AudioClip audio;
     AudioSource audiosourse;
     int[] lineNum, touchNum;
     float[] X, Y, pushtiming;//レーン：列：タッチ時間
@@ -29,7 +30,7 @@ public class GaneCom : MonoBehaviour
     KeyCode key;
     RaycastHit hit;
     Color mat;
-    bool test_a = false, test_b = false;
+    bool test_a = false, test_b = false,startGame=false;
     Animator animator;
 
     //ノーツが格納されている配列
@@ -47,9 +48,15 @@ public class GaneCom : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        p = 0;
+        g = 0;
+        m = 0;
+        this.audio = test.audio;
+        FilePass = test.text;
+        Debug.Log(FilePass);
         lineNum = new int[1];
         audiosourse = GetComponent<AudioSource>();
-        cou = 1;
+        cou = 0;
         reenNum = 0;
         count_x = 0;
         count_i = 0;
@@ -63,27 +70,37 @@ public class GaneCom : MonoBehaviour
     {
         //float fps = 1f / Time.deltaTime;
         //Debug.LogFormat("{0}fps", fps);
-        
+        delta += Time.deltaTime;
         //プレイ終了
         if (!cha)
         {
-            delta += Time.deltaTime;
-            if (delta >= 5)
+            if (startGame==true && delta >= 5)
             {
+                Debug.Log("bbbb");
                 SceneManager.LoadScene("result");
             }
         }
         //start準備(ノーツの生成)終了でtrue
         if (cha)
         {
+            if (startGame== false && delta >= 1.5f)
+            {
+                Debug.Log("aaaa");
+                text[0].text = "STRAT";
+                StartTriger = true;
+                audiosourse.clip = audio;
+                audiosourse.Play();
+                startGame = true;
+            }
             //開始エフェクト後にスタート
             if (StartTriger)//開始エフェクト後にon
             {
+                text[0].text = conbo.ToString();
                 notefalse = false;
                 delta += Time.deltaTime;
 
                 //生成
-                while (audiosourse.time >= NateArray[reenNum].time - 1.0f * 2 && reenNum < NoteCou)
+                while (audiosourse.time >= NateArray[reenNum].time - 1.0f && reenNum < NoteCou)
                 {
                     NateArray[reenNum].obj.SetActive(true);
                     reenNum++;
@@ -91,22 +108,21 @@ public class GaneCom : MonoBehaviour
                 }
 
                 //判定許容時間内
-                while (audiosourse.time + 0.3f >= NateArray[cou].time && NateArray.Length - 1 > cou && test_a == true)
+                while (audiosourse.time + 0.5f >= NateArray[cou].time && NateArray.Length - 1 > cou && test_a == true)
                 {
                     ActiveNateList.Add(NateArray[cou]);
                     cou++;
                     test_b = true;
                 }
+                GetBottenKey();
 
                 //判定許容時間外
-                if (test_b == true && ActiveNateList[0].time <= audiosourse.time - 0.3f)
+                if (test_b == true && ActiveNateList.Count > 0 && ActiveNateList[0].time <= audiosourse.time - 0.5f)
                 {
                     ActiveNateList.RemoveAt(0);
-                    if (ActiveNateList.Count == 0)
-                        test_b = false;
+                    
                 }
-
-                GetBottenKey();
+                
 
                 //タッチ判定
                 if (0 < Input.touchCount)
@@ -122,18 +138,26 @@ public class GaneCom : MonoBehaviour
                                 Ray ray = Camera.main.ScreenPointToRay(t.position);
                                 if (Physics.Raycast(ray, out hit))
                                 {
-                                    //hit.collider.gameObject.GetComponent<Animator>().SetBool("tap",true);
-                                    text[1].text = hit.collider.gameObject.name;
                                     TapReen = -48 + hit.collider.gameObject.name[5];
                                     PushKey(TapReen);
                                 }
                             }
+                            if(t.phase == TouchPhase.Ended)
+                            {
+                                Ray ray = Camera.main.ScreenPointToRay(t.position);
+                                if (Physics.Raycast(ray, out hit))
+                                {
+                                    TapReen = -48 + hit.collider.gameObject.name[5];
+                                    NoClick_Collar(TapReen);
+                                }
+                                
+                            }
                         }
                     }
                 }
-
+                Debug.Log(m);
                 //終了処理
-                if (count_i >= NateArray.Length - 1)
+                if (audiosourse.time>=audiosourse.clip.length)
                 {
                     text[0].text = "ok";
                     cha = false;
@@ -159,33 +183,44 @@ public class GaneCom : MonoBehaviour
     {
         //text[0].text = TapReen.ToString() + "_" + NateArray[count_i].lineNum;
         Click_Collar(num);
-
+        int a_cou = 0;
         foreach (var a in ActiveNateList)
         {
             if (a.lineNum == num)
             {
                 float deltaTime = audiosourse.time - a.time;
-                if (deltaTime >= -0.02f && deltaTime <= 0.02f)
+                if (deltaTime >= -0.03f && deltaTime <= 0.07f)
                 {
+                    p++;
+                    conbo++;
                     notefalse = true;
+                    text[1].text = "Perfect";
                 }
-                else if (deltaTime >= -0.03f && deltaTime <= 0.03f)
+                else if (deltaTime >= -0.1f && deltaTime < 0.2f)
                 {
+                    g++;
+                    conbo++;
                     notefalse = true;
+                    text[1].text = "Great";
                 }
-                else if (deltaTime >= -0.055f && deltaTime <= 0.055f)
+                else if (deltaTime >= -0.5f && deltaTime <= 0.5f)
                 {
+                    m++;
+                    conbo = 0;
                     notefalse = true;
+                    text[1].text = "Miss";
                 }
                 if (notefalse)
                 {
                     //Debug.Log("ok");
                     a.obj.SetActive(false);
                     notefalse = false;
+                    ActiveNateList.RemoveAt(a_cou);
                     count_i++;
                 }
                 break;
             }
+            a_cou++;
         }
     }
   
@@ -238,12 +273,9 @@ public class GaneCom : MonoBehaviour
     //csv読み込み
     void LodeCSV()
     {
-
         //FilePassが譜面ファイル名
         TextAsset csv = Resources.Load("CSV/" + FilePass) as TextAsset;
         StringReader reader = new StringReader(csv.text);
-
-        //Debug.Log("csv:"+csv);
 
         int i = 0;
         while (reader.Peek() > -1)
@@ -251,17 +283,13 @@ public class GaneCom : MonoBehaviour
             string line = reader.ReadLine();
             string[] values = line.Split(',');
             int h = 0;
-            while (values.Length != h)
-            {
-                //Debug.Log("values[h]"+values[h]);
-                h++;
-            }
             for (int j = 0; j < values.Length; j++, i++)
             {
                 num++;
                 Array.Resize(ref lineNum, num);
                 if (values[j] == "1")
                 {
+                    
                     lineNum[i] = 1;
                 }
             }
@@ -333,16 +361,6 @@ public class GaneCom : MonoBehaviour
         {
             NoClick_Collar(6);
         }
-    }
-
-    //スタートボタン、後で消す
-    public void start()
-    {
-        text[0].text = "STRAT";
-        StartTriger = true;
-        audiosourse.clip = audio;
-        audiosourse.Play();
-        button.SetActive(false);
     }
 }
 

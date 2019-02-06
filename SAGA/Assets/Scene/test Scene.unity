@@ -129,7 +129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &356121088
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -164,7 +164,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 00b79515c2377ac4ab9ee8bf39e49657, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a0b2a4303ded5d244aea95c801e63514, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -346,7 +346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &704361701
 RectTransform:
   m_ObjectHideFlags: 0
@@ -640,7 +640,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 446a2e6f959bb7b45913116e8204ad70, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2723e0f8c47d8ce4793467ec1e4cc358, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -961,7 +961,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1505812618
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1012,7 +1012,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 0,000,000
+  m_Text: '--------'
 --- !u!222 &1505812620
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1515,10 +1515,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebdb8b639c06b644b84a243b0031c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: cfcb61aa2f43d5e47a8f453bfe1952ad, type: 3}
+  - {fileID: 8300000, guid: bde61dbb85a30e049846bb7ff33f881a, type: 3}
+  texts:
+  - {fileID: 4900000, guid: 705e0e125c8e1a04285e4fed6d5b02ca, type: 3}
+  - {fileID: 4900000, guid: a08c096a4b4c55b48b960f976c2cdb26, type: 3}
   music:
   - {fileID: 356121087}
   - {fileID: 847712541}
-  - {fileID: 2041089034}
 --- !u!4 &1824393959
 Transform:
   m_ObjectHideFlags: 0
